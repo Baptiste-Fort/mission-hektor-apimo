@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXPORT HEKTOR → APIMO /// BAPTISTE FORT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        'hard': '6px 6px 0px 0px #000000',
+                        'hard-sm': '3px 3px 0px 0px #000000',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fafafa;
+            background-image: linear-gradient(#e5e5e5 1px, transparent 1px), linear-gradient(90deg, #e5e5e5 1px, transparent 1px);
+            background-size: 40px 40px;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 40s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .brut-box {
+            background: white;
+            border: 2px solid black;
+            box-shadow: 6px 6px 0px 0px black;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .brut-box:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0px 0px black;
+        }
+
+        .tag {
+            display: inline-block;
+            background: black;
+            color: white;
+            padding: 4px 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .tag-outline {
+            background: transparent;
+            color: black;
+            border: 1px solid black;
+        }
+
+        .code-block {
+            background: #0a0a0a;
+            border: 2px solid #333;
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #e0e0e0;
+            font-size: 0.8rem;
+        }
+
+        .code-block .comment {
+            color: #666;
+        }
+
+        .code-block .string {
+            color: #a8a8a8;
+        }
+
+        .code-block .keyword {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .step-badge {
+            width: 48px;
+            height: 48px;
+            background: black;
+            color: white;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .data-grid {
+            display: grid;
+            gap: 1px;
+            background: black;
+        }
+
+        .data-grid>div {
+            background: white;
+            padding: 16px;
+        }
+
+        ::selection {
+            background: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="text-black">
+
+    <!-- NAV -->
+    <nav class="fixed top-0 w-full z-50 bg-white border-b-2 border-black flex justify-between items-stretch">
+        <div class="px-6 py-4 bg-black text-white font-display font-bold text-xl tracking-tight flex items-center">
+            BAPTISTE<span class="text-gray-400">/</span>FORT
+        </div>
+        <div class="hidden md:flex flex-1 items-center overflow-hidden bg-black text-white border-l-2 border-black">
+            <div class="marquee-container w-full font-mono text-xs tracking-wider opacity-60">
+                <div class="marquee-content">
+                    EXPORT HEKTOR → APIMO • MIGRATION AUTOMATISÉE • PYTHON SELENIUM • SCRAPING DONNÉES • API APIMO •
+                    RÉSEAU BONAPARTE •
+                    EXPORT HEKTOR → APIMO • MIGRATION AUTOMATISÉE • PYTHON SELENIUM • SCRAPING DONNÉES • API APIMO •
+                    RÉSEAU BONAPARTE •
+                </div>
+            </div>
+        </div>
+        <div class="px-6 py-4 font-mono text-xs flex items-center bg-white border-l-2 border-black">
+            DÉCEMBRE 2025
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="pt-32 pb-24 px-4 md:px-8 max-w-6xl mx-auto">
+        <div class="mb-6">
+            <span class="tag">Migration de Données Immobilières</span>
+        </div>
+        <h1 class="font-display font-black text-6xl md:text-8xl mb-8 leading-[0.9] tracking-tight">
+            EXPORT<br>HEKTOR<br>→ APIMO
+        </h1>
+        <div class="max-w-3xl">
+            <p class="text-xl md:text-2xl font-light leading-relaxed mb-8">
+                Migration complète des biens immobiliers depuis la plateforme Hektor vers Apimo.
+                Solution de scraping Python avec simulation comportementale humaine,
+                contournant l'absence d'API officielle Hektor.
+            </p>
+            <div class="flex flex-wrap gap-3">
+                <span class="tag tag-outline">Python</span>
+                <span class="tag tag-outline">Selenium</span>
+                <span class="tag tag-outline">API Apimo</span>
+                <span class="tag tag-outline">Scraping</span>
+                <span class="tag tag-outline">Automatisation</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- INTRO -->
+    <section class="px-4 md:px-8 max-w-6xl mx-auto mb-24">
+        <div class="grid md:grid-cols-12 gap-8">
+            <div class="md:col-span-8 brut-box p-8 md:p-12">
+                <h2 class="font-display font-bold text-3xl mb-6">Le Problème</h2>
+                <div class="space-y-4 text-gray-700 leading-relaxed">
+                    <p>
+                        Le réseau Bonaparte utilise deux plateformes de gestion immobilière : <strong>Hektor</strong>
+                        pour certains biens historiques et <strong>Apimo</strong> comme solution principale.
+                        L'objectif est de centraliser l'ensemble du portefeuille sur Apimo.
+                    </p>
+                    <p>
+                        <strong>Problème majeur :</strong> Hektor refuse de fournir un accès API pour l'export des
+                        données.
+                        Aucune solution officielle d'extraction n'est proposée. Les équipes Bonaparte
+                        se retrouvent à devoir ressaisir manuellement chaque bien - un processus qui prendrait
+                        des semaines pour les 468 biens concernés.
+                    </p>
+                    <p>
+                        La solution développée utilise Python avec Selenium pour simuler le comportement
+                        d'un utilisateur humain, extraire les données de chaque bien, puis les injecter
+                        automatiquement dans Apimo via leur API REST.
+                    </p>
+                </div>
+            </div>
+            <div class="md:col-span-4 bg-black text-white border-hard p-8 flex flex-col justify-center">
+                <h3 class="font-mono text-xs uppercase tracking-wider text-gray-400 mb-4">Objectif</h3>
+                <p class="text-2xl font-light leading-snug mb-6">
+                    Migrer 100% des biens Hektor vers Apimo sans intervention manuelle.
+                </p>
+                <div class="space-y-3 text-sm text-gray-400">
+                    <div class="flex justify-between border-b border-gray-800 pb-2">
+                        <span>Biens à migrer</span>
+                        <span class="text-white font-mono">468</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-800 pb-2">
+                        <span>Durée mission</span>
+                        <span class="text-white font-mono">3 jours</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Taux réussite</span>
+                        <span class="text-white font-mono">100%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section class="px-4 md:px-8 max-w-6xl mx-auto mb-24">
+        <div class="brut-box p-0">
+            <div class="bg-black text-white p-6 md:p-8 border-b-2 border-black">
+                <h2 class="font-display font-bold text-3xl">Architecture Technique</h2>
+            </div>
+            <div class="p-8 md:p-12">
+                <p class="text-gray-600 mb-8 max-w-3xl">
+                    Le système contourne l'absence d'API Hektor en simulant un navigateur Chrome piloté par Python.
+                    Les données extraites sont normalisées puis envoyées à Apimo via leur API REST officielle.
+                </p>
+                <div class="data-grid grid-cols-2 md:grid-cols-4 mb-8">
+                    <div class="text-center">
+                        <div class="text-3xl mb-3">🐍</div>
+                        <div class="font-mono text-sm font-bold mb-1">Python</div>
+                        <div class="text-xs text-gray-500">Orchestration</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl mb-3">🌐</div>
+                        <div class="font-mono text-sm font-bold mb-1">Selenium</div>
+                        <div class="text-xs text-gray-500">Browser Automation</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl mb-3">🏠</div>
+                        <div class="font-mono text-sm font-bold mb-1">Hektor</div>
+                        <div class="text-xs text-gray-500">Source (Scraping)</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl mb-3">📡</div>
+                        <div class="font-mono text-sm font-bold mb-1">Apimo</div>
+                        <div class="text-xs text-gray-500">API REST</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKFLOW DÉTAILLÉ -->
+    <section class="px-4 md:px-8 max-w-6xl mx-auto mb-24">
+        <div class="mb-12">
+            <span class="tag mb-4 inline-block">Processus</span>
+            <h2 class="font-display font-bold text-4xl">Workflow Détaillé</h2>
+        </div>
+        <div class="space-y-6">
+
+            <!-- Step 1 -->
+            <div class="brut-box p-8">
+                <div class="flex gap-6 items-start">
+                    <div class="step-badge">01</div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-4 mb-4">
+                            <h3 class="font-display font-bold text-xl">Connexion Automatisée Hektor</h3>
+                            <span class="tag">Selenium</span>
+                        </div>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Le script Python lance une instance Chrome via Selenium WebDriver.
+                            Il navigue vers le portail Hektor, remplit automatiquement les credentials
+                            et gère l'authentification 2FA si nécessaire. Des délais aléatoires (2-5s)
+                            simulent le comportement humain pour éviter la détection anti-bot.
+                        </p>
+                        <div class="code-block">
+                            <span class="comment"># Simulation comportement humain</span><br>
+                            <span class="keyword">driver</span>.get(<span
+                                class="string">"https://hektor.immo/login"</span>)<br>
+                            <span class="keyword">time</span>.sleep(random.uniform(2, 5))<br>
+                            <span class="keyword">driver</span>.find_element(By.ID, <span
+                                class="string">"email"</span>).send_keys(email)<br>
+                            <span class="keyword">time</span>.sleep(random.uniform(0.5, 1.5)) <span class="comment">#
+                                Human typing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="brut-box p-8 bg-gray-50">
+                <div class="flex gap-6 items-start">
+                    <div class="step-badge">02</div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-4 mb-4">
+                            <h3 class="font-display font-bold text-xl">Extraction des Données</h3>
+                            <span class="tag">BeautifulSoup</span>
+                        </div>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Pour chaque bien, le script navigue vers la fiche détaillée et extrait :
+                            titre, description, prix, surface, nombre de pièces, photos, coordonnées GPS,
+                            caractéristiques (DPE, GES, étage...). Les données sont parsées avec BeautifulSoup
+                            et normalisées dans un format JSON compatible Apimo.
+                        </p>
+                        <div class="data-grid grid-cols-3 md:grid-cols-6">
+                            <div>
+                                <div class="text-xs text-gray-500 uppercase mb-1">Titre</div>
+                                <div class="font-mono text-sm font-bold">✓</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 uppercase mb-1">Prix</div>
+                                <div class="font-mono text-sm font-bold">✓</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 uppercase mb-1">Surface</div>
+                                <div class="font-mono text-sm font-bold">✓</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 uppercase mb-1">Photos</div>
+                                <div class="font-mono text-sm font-bold">✓</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 uppercase mb-1">DPE</div>
+                                <div class="font-mono text-sm font-bold">✓</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 uppercase mb-1">GPS</div>
+                                <div class="font-mono text-sm font-bold">✓</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="bg-black text-white border-hard p-8">
+                <div class="flex gap-6 items-start">
+                    <div class="step-badge bg-white text-black">03</div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-4 mb-4">
+                            <h3 class="font-display font-bold text-xl">Injection API Apimo</h3>
+                            <span class="tag bg-white text-black">REST API</span>
+                        </div>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            Les données extraites sont envoyées à l'API Apimo via des requêtes POST authentifiées.
+                            Chaque bien est créé avec toutes ses caractéristiques, photos incluses.
+                            Le script gère les erreurs, retries, et génère un rapport détaillé de migration.
+                        </p>
+                        <div class="code-block">
+                            <span class="keyword">POST</span> https://api.apimo.pro/agencies/{id}/properties<br>
+                            <span class="keyword">Authorization:</span> Bearer {token}<br><br>
+                            <span class="comment">// Création du bien avec toutes les données</span><br>
+                            <span class="keyword">Status:</span> <span class="string">201 Created</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="brut-box p-8">
+                <div class="flex gap-6 items-start">
+                    <div class="step-badge">04</div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-4 mb-4">
+                            <h3 class="font-display font-bold text-xl">Vérification & Rapport</h3>
+                            <span class="tag">Validation</span>
+                        </div>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Un rapport HTML détaillé est généré avec le statut de chaque bien migré :
+                            succès, erreurs, warnings. Les photos non transférées sont listées pour
+                            traitement manuel si nécessaire. Taux de réussite visé : 100%.
+                        </p>
+                        <div class="flex items-center gap-4 p-4 bg-white border-hard">
+                            <span class="text-3xl">✓</span>
+                            <div>
+                                <div class="font-bold">468 biens migrés avec succès</div>
+                                <div class="text-sm text-gray-500">Temps total : ~4 heures</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- RÉSULTATS -->
+    <section class="px-4 md:px-8 max-w-6xl mx-auto mb-24">
+        <div class="bg-black text-white border-hard p-8 md:p-12">
+            <div class="mb-8">
+                <span class="tag bg-white text-black mb-4 inline-block">Résultats</span>
+                <h2 class="font-display font-bold text-3xl">Mission Accomplie</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="border border-white/20 p-6 text-center">
+                    <div class="text-4xl font-display font-black mb-2">468</div>
+                    <div class="text-sm text-gray-500">Biens migrés</div>
+                </div>
+                <div class="border border-white/20 p-6 text-center">
+                    <div class="text-4xl font-display font-black mb-2">100%</div>
+                    <div class="text-sm text-gray-500">Taux de réussite</div>
+                </div>
+                <div class="border border-white/20 p-6 text-center">
+                    <div class="text-4xl font-display font-black mb-2">3j</div>
+                    <div class="text-sm text-gray-500">Durée mission</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white py-20 px-4 md:px-8 border-t-2 border-black">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="font-display font-black text-3xl mb-2">BAPTISTE<span class="text-gray-500">/</span>FORT
+                    </h2>
+                    <p class="text-gray-500 font-mono text-sm mb-6">Développement & Automatisation</p>
+                    <div class="text-xs text-gray-600 font-mono">
+                        Export Hektor → Apimo — Réseau Bonaparte — Décembre 2025
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Cursor Bonaparte -->
+    <div id="custom-cursor" class="fixed top-0 left-0 pointer-events-none z-[9999]"
+        style="transform: translate(-50%, -50%); display: none;">
+        <img src="logo-bonaparte.png" alt="Cursor" class="w-10 h-10 object-contain opacity-80">
+    </div>
+
+    <script>
+        const lenis = new Lenis({ duration: 1.4, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) })
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf) }
+        requestAnimationFrame(raf)
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.brut-box, section > div').forEach(el => {
+            gsap.from(el, { opacity: 0, y: 40, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 88%" } });
+        });
+        const cursor = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', (e) => { gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.2, display: 'block' }); });
+        document.addEventListener('mouseleave', () => { cursor.style.display = 'none'; });
+    </script>
+</body>
+
+</html>

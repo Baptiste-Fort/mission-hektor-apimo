@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEVIS /// BAPTISTE FORT - Export Hektor Apimo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neo-bg': '#f3f4f6',
+                        'neo-black': '#000000',
+                        'neo-primary': '#3B82F6',
+                        'neo-accent': '#C084FC',
+                        'neo-lime': '#84CC16',
+                    },
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        'brutal': '4px 4px 0px 0px #000000',
+                        'brutal-sm': '2px 2px 0px 0px #000000',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f3f4f6;
+            background-image: linear-gradient(#e5e7eb 1px, transparent 1px), linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+            background-size: 40px 40px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .torn-paper-bottom {
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 98% 99%, 96% 100%, 94% 99%, 92% 100%, 90% 99%, 88% 100%, 86% 99%, 84% 100%, 82% 99%, 80% 100%, 78% 99%, 76% 100%, 74% 99%, 72% 100%, 70% 99%, 68% 100%, 66% 99%, 64% 100%, 62% 99%, 60% 100%, 58% 99%, 56% 100%, 54% 99%, 52% 100%, 50% 99%, 48% 100%, 46% 99%, 44% 100%, 42% 99%, 40% 100%, 38% 99%, 36% 100%, 34% 99%, 32% 100%, 30% 99%, 28% 100%, 26% 99%, 24% 100%, 22% 99%, 20% 100%, 18% 99%, 16% 100%, 14% 99%, 12% 100%, 10% 99%, 8% 100%, 6% 99%, 4% 100%, 2% 99%, 0% 100%);
+        }
+
+        @media print {
+            body {
+                background: white !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-neo-black font-sans pb-8">
+
+    <!-- TOP MARQUEE -->
+    <div class="bg-neo-primary text-white py-2 border-b-4 border-neo-black overflow-hidden relative z-50">
+        <div class="marquee-container font-mono text-xs font-bold uppercase tracking-widest">
+            <div class="marquee-content">
+                DEVIS ESTIMATIF /// EXPORT HEKTOR APIMO /// BAPTISTE FORT /// RÉSEAU BONAPARTE /// DEVIS ESTIMATIF ///
+                EXPORT HEKTOR APIMO /// BAPTISTE FORT ///
+            </div>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 max-w-5xl mt-8">
+
+        <!-- HEADER -->
+        <header class="flex flex-col md:flex-row gap-4 mb-8 items-stretch">
+            <div
+                class="md:w-1/2 bg-white border-4 border-neo-black p-6 shadow-brutal flex flex-row items-center justify-between relative overflow-hidden">
+                <div class="absolute -right-5 -top-5 w-24 h-24 bg-neo-lime rounded-full blur-2xl opacity-50"></div>
+                <div>
+                    <span
+                        class="bg-neo-black text-white px-2 py-0.5 font-mono text-[10px] font-bold uppercase mb-2 inline-block">Document
+                        Prévisionnel</span>
+                    <h1 class="text-6xl font-bold uppercase tracking-tighter leading-none relative z-10">
+                        DE<span class="text-neo-primary">VIS</span>.
+                    </h1>
+                </div>
+                <div class="text-right font-mono text-xs z-10">
+                    <p class="font-bold text-gray-500 mb-1">N° RÉFÉRENCE</p>
+                    <p class="font-bold text-lg">DEV-2025-12-002</p>
+                </div>
+            </div>
+            <div class="md:w-1/2 grid grid-cols-2 gap-4 font-mono">
+                <div
+                    class="bg-neo-black text-white p-4 border-4 border-neo-black shadow-brutal flex flex-col justify-center">
+                    <span class="text-gray-400 text-[10px] uppercase block">Date</span>
+                    <span class="text-xl font-bold text-neo-lime">10/12/2025</span>
+                </div>
+                <div class="bg-white p-4 border-4 border-neo-black shadow-brutal flex flex-col justify-center">
+                    <span class="text-gray-500 text-[10px] uppercase block">Validité</span>
+                    <span class="text-xl font-bold text-neo-primary">10/01/2026</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- PARTIES -->
+        <section class="grid grid-cols-2 gap-8 mb-8">
+            <div class="pl-4 border-l-4 border-neo-black">
+                <div class="flex items-center gap-2 mb-2">
+                    <div
+                        class="bg-neo-black text-white w-6 h-6 flex items-center justify-center font-bold font-mono text-xs rounded-full">
+                        A</div>
+                    <h3 class="text-sm font-bold uppercase">Prestataire</h3>
+                </div>
+                <div class="font-mono text-xs space-y-0.5">
+                    <p class="font-bold text-base">BAPTISTE FORT</p>
+                    <p class="text-gray-600">Développement & Automatisation</p>
+                    <p class="text-gray-600">1 RUE DU ROI DAGOBERT, 94130 NOGENT-SUR-MARNE</p>
+                    <p class="mt-1 text-[10px] bg-gray-200 inline-block px-1">SIRET : 90939247400013</p>
+                </div>
+            </div>
+            <div class="pl-4 border-l-4 border-dashed border-neo-primary">
+                <div class="flex items-center gap-2 mb-2">
+                    <div
+                        class="bg-neo-primary text-white w-6 h-6 flex items-center justify-center font-bold font-mono text-xs rounded-full">
+                        B</div>
+                    <h3 class="text-sm font-bold uppercase text-neo-primary">Client</h3>
+                </div>
+                <div class="font-mono text-xs space-y-0.5">
+                    <p class="font-bold text-base">RÉSEAU BONAPARTE</p>
+                    <p class="text-gray-600">SAS au capital de 12 829,00 €</p>
+                    <p class="text-gray-600">26 AVENUE JEAN KUNTZMANN, 38330 MONTBONNOT</p>
+                    <p class="mt-1 text-[10px] bg-blue-100 inline-block px-1">SIRET : 839 121...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESCRIPTION -->
+        <section class="mb-6">
+            <div class="bg-white border-4 border-neo-black shadow-brutal p-6 relative">
+                <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-20 h-6 bg-yellow-200 opacity-80 rotate-1"></div>
+                <h2 class="font-bold text-lg mb-4 border-b-4 border-neo-black pb-1 uppercase flex items-center gap-2">
+                    <span class="w-3 h-3 bg-neo-primary inline-block"></span>
+                    Détails de la prestation
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left font-mono">
+                        <thead class="bg-gray-100 border-b-4 border-neo-black text-xs uppercase">
+                            <tr>
+                                <th class="p-3 w-3/4">Description</th>
+                                <th class="p-3 w-1/4 text-right">Montant HT</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y-2 divide-dashed divide-gray-300">
+                            <tr>
+                                <td class="p-3 align-top">
+                                    <p class="font-bold text-sm mb-1">Export Biens Immobiliers Hektor → Apimo</p>
+                                    <ul class="text-xs text-gray-600 list-disc list-inside space-y-0.5 pl-1">
+                                        <li>Développement script Python / Selenium (scraping Hektor)</li>
+                                        <li>Simulation comportement humain (anti-détection)</li>
+                                        <li>Extraction données 468 biens (photos, DPE, GPS...)</li>
+                                        <li>Intégration API Apimo (création automatique)</li>
+                                        <li>Rapport de migration détaillé</li>
+                                    </ul>
+                                </td>
+                                <td class="p-3 text-right font-bold text-sm align-top pt-3">900,00 €</td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="bg-neo-black text-white text-sm">
+                            <tr>
+                                <td class="p-3 text-right font-bold uppercase border-r border-gray-700">Total HT</td>
+                                <td class="p-3 text-right font-bold text-neo-lime total-amount">900,00 €</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <section class="grid grid-cols-12 gap-6 items-stretch">
+            <div
+                class="col-span-5 bg-gray-100 border-2 border-neo-black p-4 text-xs font-mono flex flex-col justify-center">
+                <p class="font-bold uppercase mb-2 border-b border-gray-300 pb-1">Notes</p>
+                <p class="text-gray-600 italic">"TVA non applicable, art. 293 B du Code Général des Impôts"</p>
+                <div class="mt-auto pt-4 text-[10px] text-gray-400">Durée estimée : 3 jours (10/12 - 15/12/2025)</div>
+            </div>
+            <div
+                class="col-span-7 bg-white border-4 border-dashed border-neo-primary p-4 relative flex flex-col torn-paper-bottom shadow-brutal-sm h-40">
+                <div
+                    class="absolute top-0 right-0 bg-neo-primary text-white text-[10px] px-2 py-0.5 font-mono font-bold">
+                    BON POUR ACCORD</div>
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <h4 class="font-bold uppercase text-neo-primary text-xs">Signature Client</h4>
+                        <p class="text-[10px] text-gray-400 font-mono">Mention "Lu et approuvé" + Date</p>
+                    </div>
+                </div>
+                <div class="flex-grow border border-gray-100 bg-gray-50 rounded mb-2"></div>
+                <div class="flex justify-between items-end border-t border-neo-primary pt-1">
+                    <span class="font-bold text-xs uppercase">Net à payer</span>
+                    <span class="font-bold text-xl text-neo-black">900,00 €</span>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-6 border-t-2 border-neo-black pt-2 text-center">
+            <p class="font-mono text-[10px] text-gray-500">Baptiste Fort - SIRET 90939247400013 - Document généré le
+                10/12/2025</p>
+        </footer>
+    </main>
+
+    <script>
+        gsap.from("main", { opacity: 0, y: 20, duration: 0.8, ease: "power2.out" });
+        let total = { val: 0 };
+        gsap.to(total, { val: 900, duration: 1.5, ease: "power3.out", delay: 0.2, onUpdate: function () { document.querySelector(".total-amount").innerText = total.val.toFixed(2).replace('.', ',') + " €"; } });
+    </script>
+</body>
+
+</html>

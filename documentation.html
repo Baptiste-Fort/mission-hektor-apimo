@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCUMENTATION TECHNIQUE /// Export Hektor → Apimo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neo-bg': '#f3f4f6',
+                        'neo-black': '#000000',
+                        'neo-primary': '#3B82F6',
+                        'neo-lime': '#84CC16',
+                        'neo-accent': '#FF4D00',
+                    },
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        'brutal': '4px 4px 0px 0px #000000',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f3f4f6;
+            background-image: linear-gradient(#e5e7eb 1px, transparent 1px), linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .page-break {
+            page-break-after: always;
+        }
+
+        @media print {
+            body {
+                background: white !important;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        .code-block {
+            background: #0a0a0a;
+            border: 2px solid #333;
+            padding: 16px;
+            font-family: 'Space Mono', monospace;
+            color: #e0e0e0;
+            font-size: 0.75rem;
+            overflow-x: auto;
+        }
+
+        .code-block .comment {
+            color: #666;
+        }
+
+        .code-block .keyword {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .code-block .string {
+            color: #84CC16;
+        }
+    </style>
+</head>
+
+<body class="text-neo-black font-sans">
+
+    <!-- COVER PAGE -->
+    <div class="min-h-screen flex flex-col justify-center items-center p-8">
+        <div class="bg-white border-4 border-neo-black shadow-brutal p-12 max-w-3xl text-center">
+            <div class="bg-neo-black text-white px-4 py-2 font-mono text-sm mb-8 inline-block">DOCUMENTATION TECHNIQUE
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-bold uppercase mb-6 leading-tight">
+                EXPORT<br>
+                <span class="text-neo-primary">HEKTOR</span><br>
+                → APIMO
+            </h1>
+
+            <div class="border-t-4 border-neo-black pt-6 mt-6 font-mono text-sm text-gray-600">
+                <p><strong>Client :</strong> Réseau Bonaparte</p>
+                <p><strong>Auteur :</strong> Baptiste Fort</p>
+                <p><strong>Date :</strong> Décembre 2025</p>
+                <p><strong>Version :</strong> 1.0</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="min-h-screen p-8 max-w-4xl mx-auto">
+        <div class="bg-white border-4 border-neo-black shadow-brutal p-8 mb-8">
+            <h2 class="text-3xl font-bold mb-6 border-b-4 border-neo-black pb-2">📑 Sommaire</h2>
+            <div class="space-y-3 font-mono">
+                <div class="flex justify-between border-b border-dashed border-gray-300 pb-2">
+                    <span>1. Contexte du projet</span>
+                    <span class="text-gray-400">Page 3</span>
+                </div>
+                <div class="flex justify-between border-b border-dashed border-gray-300 pb-2">
+                    <span>2. Problématique technique</span>
+                    <span class="text-gray-400">Page 3</span>
+                </div>
+                <div class="flex justify-between border-b border-dashed border-gray-300 pb-2">
+                    <span>3. Solution développée</span>
+                    <span class="text-gray-400">Page 4</span>
+                </div>
+                <div class="flex justify-between border-b border-dashed border-gray-300 pb-2">
+                    <span>4. Architecture technique</span>
+                    <span class="text-gray-400">Page 5</span>
+                </div>
+                <div class="flex justify-between border-b border-dashed border-gray-300 pb-2">
+                    <span>5. Processus d'extraction</span>
+                    <span class="text-gray-400">Page 6</span>
+                </div>
+                <div class="flex justify-between border-b border-dashed border-gray-300 pb-2">
+                    <span>6. Injection API Apimo</span>
+                    <span class="text-gray-400">Page 7</span>
+                </div>
+                <div class="flex justify-between border-b border-dashed border-gray-300 pb-2">
+                    <span>7. Résultats & Statistiques</span>
+                    <span class="text-gray-400">Page 8</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>8. Maintenance & Évolutions</span>
+                    <span class="text-gray-400">Page 8</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- PAGE 3: CONTEXTE -->
+    <div class="p-8 max-w-4xl mx-auto">
+        <div class="bg-neo-black text-white px-4 py-2 font-mono text-xs mb-4 inline-block">SECTION 01</div>
+        <h2 class="text-3xl font-bold mb-6">1. Contexte du Projet</h2>
+
+        <div class="bg-white border-4 border-neo-black shadow-brutal p-6 mb-8">
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Le réseau <strong>Bonaparte Art de Vivre</strong> gère un portefeuille immobilier important
+                réparti sur deux plateformes distinctes :
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                <li><strong>Hektor</strong> : Logiciel historique contenant 468 biens</li>
+                <li><strong>Apimo</strong> : Nouvelle plateforme de référence</li>
+            </ul>
+            <p class="text-gray-700 leading-relaxed">
+                L'objectif stratégique est de <strong>centraliser 100% du portefeuille sur Apimo</strong>
+                pour unifier la gestion et optimiser les workflows commerciaux.
+            </p>
+        </div>
+
+        <div class="bg-neo-primary text-white px-4 py-2 font-mono text-xs mb-4 inline-block">SECTION 02</div>
+        <h2 class="text-3xl font-bold mb-6">2. Problématique Technique</h2>
+
+        <div class="bg-white border-4 border-neo-black shadow-brutal p-6 mb-8">
+            <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
+                <h3 class="font-bold text-red-700 mb-2">⚠️ Obstacle majeur</h3>
+                <p class="text-gray-700">
+                    <strong>Hektor ne propose aucune API d'export.</strong> La plateforme n'offre pas
+                    de fonctionnalité d'extraction massive des données. Aucune documentation technique
+                    n'est disponible pour accéder programmatiquement aux informations.
+                </p>
+            </div>
+
+            <h3 class="font-bold mb-3">Options envisagées :</h3>
+            <div class="space-y-3 font-mono text-sm">
+                <div class="flex items-start gap-3 p-3 bg-gray-100 border-l-4 border-gray-400">
+                    <span class="text-red-500 font-bold">✗</span>
+                    <div>
+                        <strong>Export CSV natif</strong>
+                        <p class="text-gray-600 text-xs">Non disponible dans Hektor</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 p-3 bg-gray-100 border-l-4 border-gray-400">
+                    <span class="text-red-500 font-bold">✗</span>
+                    <div>
+                        <strong>API REST officielle</strong>
+                        <p class="text-gray-600 text-xs">Hektor refuse de fournir un accès API</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 p-3 bg-neo-lime/20 border-l-4 border-neo-lime">
+                    <span class="text-neo-lime font-bold">✓</span>
+                    <div>
+                        <strong>Web Scraping automatisé</strong>
+                        <p class="text-gray-600 text-xs">Solution retenue : simulation comportement humain</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- PAGE 4: SOLUTION -->
+    <div class="p-8 max-w-4xl mx-auto">
+        <div class="bg-neo-lime text-black px-4 py-2 font-mono text-xs mb-4 inline-block font-bold">SECTION 03</div>
+        <h2 class="text-3xl font-bold mb-6">3. Solution Développée</h2>
+
+        <div class="bg-white border-4 border-neo-black shadow-brutal p-6 mb-8">
+            <h3 class="font-bold text-xl mb-4">Approche : Simulation Comportement Humain</h3>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                La solution consiste à piloter un navigateur Chrome réel via <strong>Python + Selenium</strong>,
+                simulant les actions d'un utilisateur humain pour extraire les données de chaque bien.
+            </p>
+
+            <h4 class="font-bold mb-3 mt-6">Stack Technique :</h4>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 font-mono text-center">
+                <div class="bg-gray-100 p-4 border-2 border-neo-black">
+                    <div class="text-2xl mb-2">🐍</div>
+                    <div class="text-sm font-bold">Python 3.11</div>
+                </div>
+                <div class="bg-gray-100 p-4 border-2 border-neo-black">
+                    <div class="text-2xl mb-2">🌐</div>
+                    <div class="text-sm font-bold">Selenium</div>
+                </div>
+                <div class="bg-gray-100 p-4 border-2 border-neo-black">
+                    <div class="text-2xl mb-2">🍲</div>
+                    <div class="text-sm font-bold">BeautifulSoup</div>
+                </div>
+                <div class="bg-gray-100 p-4 border-2 border-neo-black">
+                    <div class="text-2xl mb-2">📡</div>
+                    <div class="text-sm font-bold">Requests</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white border-4 border-neo-black shadow-brutal p-6">
+            <h3 class="font-bold text-xl mb-4">Techniques Anti-Détection</h3>
+            <p class="text-gray-700 mb-4">
+                Pour éviter d'être bloqué par les systèmes anti-bot de Hektor :
+            </p>
+            <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start gap-2">
+                    <span class="text-neo-lime font-bold">→</span>
+                    <span><strong>Délais aléatoires</strong> entre 2 et 5 secondes entre chaque action</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="text-neo-lime font-bold">→</span>
+                    <span><strong>Simulation de scroll</strong> progressif sur les pages</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="text-neo-lime font-bold">→</span>
+                    <span><strong>Mouvements de souris</strong> naturels avant les clics</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="text-neo-lime font-bold">→</span>
+                    <span><strong>User-Agent rotatif</strong> pour varier les signatures</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- PAGE 5: ARCHITECTURE -->
+    <div class="p-8 max-w-4xl mx-auto">
+        <div class="bg-neo-black text-white px-4 py-2 font-mono text-xs mb-4 inline-block">SECTION 04</div>
+        <h2 class="text-3xl font-bold mb-6">4. Architecture Technique</h2>
+
+        <div class="bg-white border-4 border-neo-black shadow-brutal p-6 mb-8">
+            <div class="code-block mb-6">
+                <span class="comment"># Structure du projet</span><br><br>
+                hektor-apimo-export/<br>
+                ├── main.py <span class="comment"># Point d'entrée</span><br>
+                ├── scraper/<br>
+                │ ├── hektor.py <span class="comment"># Extraction Hektor</span><br>
+                │ └── parser.py <span class="comment"># Parsing HTML</span><br>
+                ├── api/<br>
+                │ └── apimo.py <span class="comment"># Client API Apimo</span><br>
+                ├── models/<br>
+                │ └── property.py <span class="comment"># Modèle de données</span><br>
+                ├── utils/<br>
+                │ ├── anti_detect.py <span class="comment"># Comportement humain</span><br>
+                │ └── logger.py <span class="comment"># Logging</span><br>
+                └── output/<br>
+                └── report.html <span class="comment"># Rapport migration</span>
+            </div>
+
+            <h3 class="font-bold text-lg mb-4">Flux de données :</h3>
+            <div class="flex flex-wrap items-center justify-center gap-4 font-mono text-sm">
+                <div class="bg-gray-200 px-4 py-2 border-2 border-neo-black">HEKTOR</div>
+                <div class="text-2xl">→</div>
+                <div class="bg-yellow-200 px-4 py-2 border-2 border-neo-black">Selenium</div>
+                <div class="text-2xl">→</div>
+                <div class="bg-blue-200 px-4 py-2 border-2 border-neo-black">JSON</div>
+                <div class="text-2xl">→</div>
+                <div class="bg-neo-lime px-4 py-2 border-2 border-neo-black text-black">APIMO API</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- PAGE 6: PROCESSUS -->
+    <div class="p-8 max-w-4xl mx-auto">
+        <div class="bg-neo-primary text-white px-4 py-2 font-mono text-xs mb-4 inline-block">SECTION 05</div>
+        <h2 class="text-3xl font-bold mb-6">5. Processus d'Extraction</h2>
+
+        <div class="space-y-4">
+            <div class="bg-white border-4 border-neo-black shadow-brutal p-6">
+                <div class="flex items-start gap-4">
+                    <div class="bg-neo-black text-white w-10 h-10 flex items-center justify-center font-bold shrink-0">1
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">Authentification Hektor</h3>
+                        <p class="text-gray-600 text-sm mb-3">Connexion automatique avec gestion des sessions et
+                            cookies.</p>
+                        <div class="code-block">
+                            driver.get(<span class="string">"https://hektor.immo/login"</span>)<br>
+                            driver.find_element(By.ID, <span
+                                class="string">"email"</span>).send_keys(credentials.email)<br>
+                            time.sleep(random.uniform(1, 3))<br>
+                            driver.find_element(By.ID, <span
+                                class="string">"password"</span>).send_keys(credentials.password)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white border-4 border-neo-black shadow-brutal p-6">
+                <div class="flex items-start gap-4">
+                    <div class="bg-neo-black text-white w-10 h-10 flex items-center justify-center font-bold shrink-0">2
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">Navigation & Extraction</h3>
+                        <p class="text-gray-600 text-sm mb-3">Parcours de chaque fiche bien et extraction des données.
+                        </p>
+                        <div class="code-block">
+                            <span class="keyword">for</span> property_id <span class="keyword">in</span>
+                            property_list:<br>
+                            &nbsp;&nbsp;driver.get(f<span class="string">"/properties/{property_id}"</span>)<br>
+                            &nbsp;&nbsp;html = driver.page_source<br>
+                            &nbsp;&nbsp;data = parse_property(html) <span class="comment"># BeautifulSoup</span><br>
+                            &nbsp;&nbsp;properties.append(data)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white border-4 border-neo-black shadow-brutal p-6">
+                <div class="flex items-start gap-4">
+                    <div class="bg-neo-black text-white w-10 h-10 flex items-center justify-center font-bold shrink-0">3
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">Données Extraites</h3>
+                        <div class="grid grid-cols-3 gap-2 font-mono text-xs mt-4">
+                            <div class="bg-gray-100 p-2 text-center border">Titre</div>
+                            <div class="bg-gray-100 p-2 text-center border">Prix</div>
+                            <div class="bg-gray-100 p-2 text-center border">Surface</div>
+                            <div class="bg-gray-100 p-2 text-center border">Photos</div>
+                            <div class="bg-gray-100 p-2 text-center border">DPE/GES</div>
+                            <div class="bg-gray-100 p-2 text-center border">GPS</div>
+                            <div class="bg-gray-100 p-2 text-center border">Pièces</div>
+                            <div class="bg-gray-100 p-2 text-center border">Chambres</div>
+                            <div class="bg-gray-100 p-2 text-center border">Description</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- PAGE 7: API APIMO -->
+    <div class="p-8 max-w-4xl mx-auto">
+        <div class="bg-neo-accent text-white px-4 py-2 font-mono text-xs mb-4 inline-block">SECTION 06</div>
+        <h2 class="text-3xl font-bold mb-6">6. Injection API Apimo</h2>
+
+        <div class="bg-white border-4 border-neo-black shadow-brutal p-6 mb-8">
+            <h3 class="font-bold text-lg mb-4">Authentification API</h3>
+            <div class="code-block mb-6">
+                <span class="comment"># Configuration Apimo API</span><br>
+                APIMO_API_URL = <span class="string">"https://api.apimo.pro"</span><br>
+                APIMO_PROVIDER = <span class="string">"xxxxx"</span><br>
+                APIMO_TOKEN = <span class="string">"Bearer {access_token}"</span><br><br>
+                headers = {<br>
+                &nbsp;&nbsp;<span class="string">"Authorization"</span>: APIMO_TOKEN,<br>
+                &nbsp;&nbsp;<span class="string">"Content-Type"</span>: <span
+                    class="string">"application/json"</span><br>
+                }
+            </div>
+
+            <h3 class="font-bold text-lg mb-4">Création de bien</h3>
+            <div class="code-block">
+                <span class="keyword">POST</span> /agencies/{agency_id}/properties<br><br>
+                {<br>
+                &nbsp;&nbsp;<span class="string">"category"</span>: 1, <span class="comment">// Vente</span><br>
+                &nbsp;&nbsp;<span class="string">"type"</span>: 2, <span class="comment">// Appartement</span><br>
+                &nbsp;&nbsp;<span class="string">"price"</span>: 450000,<br>
+                &nbsp;&nbsp;<span class="string">"area"</span>: { <span class="string">"value"</span>: 85 },<br>
+                &nbsp;&nbsp;<span class="string">"rooms"</span>: 4,<br>
+                &nbsp;&nbsp;<span class="string">"bedrooms"</span>: 2,<br>
+                &nbsp;&nbsp;<span class="string">"city"</span>: { <span class="string">"zipcode"</span>: <span
+                    class="string">"75008"</span> }<br>
+                }<br><br>
+                <span class="comment">// Response: 201 Created</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- PAGE 8: RÉSULTATS -->
+    <div class="p-8 max-w-4xl mx-auto">
+        <div class="bg-neo-lime text-black px-4 py-2 font-mono text-xs mb-4 inline-block font-bold">SECTION 07</div>
+        <h2 class="text-3xl font-bold mb-6">7. Résultats & Statistiques</h2>
+
+        <div class="grid grid-cols-3 gap-4 mb-8">
+            <div class="bg-white border-4 border-neo-black shadow-brutal p-6 text-center">
+                <div class="text-4xl font-bold text-neo-primary mb-2">468</div>
+                <div class="font-mono text-xs text-gray-600 uppercase">Biens migrés</div>
+            </div>
+            <div class="bg-white border-4 border-neo-black shadow-brutal p-6 text-center">
+                <div class="text-4xl font-bold text-neo-lime mb-2">100%</div>
+                <div class="font-mono text-xs text-gray-600 uppercase">Taux réussite</div>
+            </div>
+            <div class="bg-white border-4 border-neo-black shadow-brutal p-6 text-center">
+                <div class="text-4xl font-bold text-neo-accent mb-2">~4h</div>
+                <div class="font-mono text-xs text-gray-600 uppercase">Temps exécution</div>
+            </div>
+        </div>
+
+        <div class="bg-neo-black text-white px-4 py-2 font-mono text-xs mb-4 inline-block">SECTION 08</div>
+        <h2 class="text-3xl font-bold mb-6">8. Maintenance & Évolutions</h2>
+
+        <div class="bg-white border-4 border-neo-black shadow-brutal p-6">
+            <h3 class="font-bold mb-4">Recommandations :</h3>
+            <ul class="space-y-3 text-gray-700">
+                <li class="flex items-start gap-3">
+                    <span class="text-neo-primary font-bold">1.</span>
+                    <span>Conserver les credentials Hektor pour migrations futures</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-neo-primary font-bold">2.</span>
+                    <span>Rapport HTML disponible pour vérification des données</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-neo-primary font-bold">3.</span>
+                    <span>Script réutilisable pour nouveaux biens si nécessaire</span>
+                </li>
+            </ul>
+
+            <div class="mt-6 p-4 bg-neo-lime/20 border-2 border-neo-lime">
+                <p class="font-mono text-sm text-center">
+                    <strong>Mission terminée avec succès le 15/12/2025</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="mt-16 p-8 border-t-4 border-neo-black">
+        <div class="max-w-4xl mx-auto text-center font-mono text-xs text-gray-500">
+            <p>Documentation Technique — Export Hektor → Apimo</p>
+            <p>Baptiste Fort — Réseau Bonaparte — Décembre 2025</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
