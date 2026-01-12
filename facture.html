@@ -4,255 +4,353 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FACTURE /// BAPTISTE FORT - Export Hektor Apimo</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>FACTURE /// BAPTISTE FORT</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Space+Mono:wght@400;700&display=swap"
         rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'neo-bg': '#e0e0e0',
-                        'neo-black': '#1a1a1a',
-                        'neo-accent': '#FF4D00',
-                        'neo-green': '#10B981',
-                        'neo-yellow': '#FACC15',
-                    },
-                    fontFamily: {
-                        sans: ['Space Grotesk', 'sans-serif'],
-                        mono: ['Space Mono', 'monospace'],
-                    },
-                    boxShadow: {
-                        'neo': '8px 8px 0px 0px #1a1a1a',
-                        'neo-sm': '4px 4px 0px 0px #1a1a1a',
-                    }
-                }
-            }
-        }
-    </script>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background-color: #e0e0e0;
-            background-image: radial-gradient(#1a1a1a 1px, transparent 1px);
-            background-size: 20px 20px;
-            overflow-x: hidden;
+            font-family: 'Space Grotesk', sans-serif;
+            background: #f5f5f5;
+            color: #1a1a1a;
         }
 
-        .marquee-container {
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 20s linear infinite;
-        }
-
-        @keyframes marquee {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        .stamp-box {
-            mix-blend-mode: multiply;
-        }
-
-        .diagonal-stripes {
-            background: repeating-linear-gradient(45deg, #f3f4f6, #f3f4f6 10px, #e5e7eb 10px, #e5e7eb 20px);
+        @page {
+            size: A4;
+            margin: 0;
         }
 
         @media print {
             body {
-                background: white !important;
+                background: white;
             }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            max-height: 297mm;
+            margin: 0 auto;
+            background: white;
+            padding: 15mm;
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8mm;
+            border-bottom: 3px solid #1a1a1a;
+            padding-bottom: 5mm;
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .title span {
+            color: #FF4D00;
+        }
+
+        .meta {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            text-align: right;
+        }
+
+        .meta div {
+            margin-bottom: 2px;
+        }
+
+        .meta strong {
+            color: #FF4D00;
+        }
+
+        .parties {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5mm;
+            margin-bottom: 8mm;
+        }
+
+        .party {
+            padding: 4mm;
+            border: 2px solid #1a1a1a;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+        }
+
+        .party.from {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .party h3 {
+            font-size: 11px;
+            margin-bottom: 3mm;
+            padding-bottom: 2mm;
+            border-bottom: 1px solid currentColor;
+        }
+
+        .party .name {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 2mm;
+        }
+
+        .party.from .name {
+            color: #FACC15;
+        }
+
+        .table {
+            border: 3px solid #1a1a1a;
+            margin-bottom: 5mm;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 1fr 100px;
+            background: #1a1a1a;
+            color: white;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3mm;
+        }
+
+        .table-body {
+            padding: 4mm;
+        }
+
+        .table-body h4 {
+            font-size: 16px;
+            margin-bottom: 3mm;
+        }
+
+        .table-body ul {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            margin-left: 4mm;
+            color: #666;
+        }
+
+        .table-body li {
+            margin-bottom: 1mm;
+        }
+
+        .table-footer {
+            display: grid;
+            grid-template-columns: 1fr 100px;
+            border-top: 3px solid #1a1a1a;
+            background: #f5f5f5;
+        }
+
+        .table-footer div {
+            padding: 3mm;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+        }
+
+        .table-footer div:first-child {
+            text-align: right;
+            border-right: 3px solid #1a1a1a;
+            font-size: 11px;
+        }
+
+        .table-footer div:last-child {
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .bottom {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 5mm;
+            margin-bottom: 5mm;
+        }
+
+        .bank {
+            padding: 4mm;
+            border: 2px solid #1a1a1a;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            background: #fafafa;
+        }
+
+        .bank h4 {
+            font-size: 10px;
+            margin-bottom: 3mm;
+            padding-bottom: 2mm;
+            border-bottom: 2px solid #1a1a1a;
+        }
+
+        .bank .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1mm;
+        }
+
+        .bank .iban {
+            background: #eee;
+            padding: 2mm;
+            margin-top: 2mm;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .total-box {
+            background: #FF4D00;
+            border: 3px solid #1a1a1a;
+            padding: 5mm;
+            text-align: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .total-box .label {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            margin-bottom: 2mm;
+        }
+
+        .total-box .amount {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .stamp {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stamp-box {
+            border: 3px solid #10B981;
+            color: #10B981;
+            padding: 3mm 5mm;
+            font-weight: 700;
+            font-size: 12px;
+            transform: rotate(-5deg);
+            text-align: center;
+        }
+
+        .stamp-box small {
+            display: block;
+            font-size: 9px;
+            margin-top: 1mm;
+        }
+
+        .tva-note {
+            font-family: 'Space Mono', monospace;
+            font-size: 8px;
+            color: #888;
+        }
+
+        .footer {
+            margin-top: 5mm;
+            padding-top: 3mm;
+            border-top: 1px solid #ddd;
+            font-family: 'Space Mono', monospace;
+            font-size: 8px;
+            color: #888;
+            text-align: center;
         }
     </style>
 </head>
 
-<body class="text-neo-black font-sans selection:bg-neo-accent selection:text-white pb-20">
-
-    <!-- TOP BAR -->
-    <div class="fixed top-0 left-0 w-full bg-neo-black text-white py-2 border-b-4 border-neo-black z-50">
-        <div class="marquee-container font-mono text-sm uppercase tracking-widest">
-            <div class="marquee-content">
-                FACTURE /// DÉCEMBRE 2025 /// BAPTISTE FORT /// EXPORT HEKTOR APIMO /// RÉSEAU BONAPARTE /// FACTURE ///
-                DÉCEMBRE 2025 ///
+<body>
+    <div class="page">
+        <div class="header">
+            <div>
+                <div class="title">FACT<span>URE</span></div>
+                <div style="font-family: 'Space Mono', monospace; font-size: 10px; color: #888; margin-top: 2mm;">
+                    DOCUMENT OFFICIEL</div>
+            </div>
+            <div class="meta">
+                <div>N° <strong>FA-2025-12-002</strong></div>
+                <div>Date: <strong>15/12/2025</strong></div>
+                <div>Période: <strong>10/12 - 15/12</strong></div>
             </div>
         </div>
-    </div>
 
-    <main class="container mx-auto px-4 pt-24 max-w-5xl">
+        <div class="parties">
+            <div class="party from">
+                <h3>ÉMETTEUR</h3>
+                <div class="name">BAPTISTE FORT</div>
+                <div>Développement & Automatisation</div>
+                <div style="margin-top: 2mm;">1 RUE DU ROI DAGOBERT</div>
+                <div>94130 NOGENT-SUR-MARNE</div>
+                <div style="margin-top: 2mm; opacity: 0.7;">SIRET: 90939247400013</div>
+            </div>
+            <div class="party">
+                <h3>DESTINATAIRE</h3>
+                <div class="name">RÉSEAU BONAPARTE</div>
+                <div>SAS au capital de 12 829,00 €</div>
+                <div style="margin-top: 2mm;">26 AVENUE JEAN KUNTZMANN</div>
+                <div>38330 MONTBONNOT-SAINT-MARTIN</div>
+                <div style="margin-top: 2mm; color: #888;">SIRET: 839 121 126 00024</div>
+            </div>
+        </div>
 
-        <!-- HEADER -->
-        <header class="mb-12 relative">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-                <div>
-                    <div
-                        class="inline-block bg-neo-yellow border-2 border-neo-black px-4 py-1 font-mono text-sm mb-4 font-bold shadow-neo-sm transform -rotate-2">
-                        DOCUMENT OFFICIEL
-                    </div>
-                    <h1 class="text-6xl md:text-8xl font-bold uppercase leading-none">
-                        FACT<span class="text-transparent" style="-webkit-text-stroke: 2px black;">URE</span><br>
-                        12-2025
-                    </h1>
-                </div>
-                <div
-                    class="bg-white border-4 border-neo-black p-6 shadow-neo transform rotate-2 hover:rotate-0 transition-transform duration-300">
-                    <div class="grid grid-cols-2 gap-x-8 gap-y-2 font-mono text-sm">
-                        <span class="text-gray-500">N° FACTURE</span>
-                        <span class="font-bold">FA-2025-12-002</span>
-                        <span class="text-gray-500">DATE</span>
-                        <span class="font-bold">15/12/2025</span>
-                        <span class="text-gray-500">PÉRIODE</span>
-                        <span class="font-bold text-neo-accent">10/12 - 15/12</span>
-                    </div>
-                </div>
+        <div class="table">
+            <div class="table-header">
+                <div>DÉSIGNATION</div>
+                <div style="text-align: right;">MONTANT HT</div>
             </div>
-        </header>
+            <div class="table-body">
+                <h4>Export Hektor → Apimo</h4>
+                <ul>
+                    <li>Développement script Python / Selenium</li>
+                    <li>Extraction données 468 biens immobiliers</li>
+                    <li>Intégration API Apimo (468 biens migrés)</li>
+                </ul>
+            </div>
+            <div class="table-footer">
+                <div>TOTAL HT</div>
+                <div>900,00 €</div>
+            </div>
+        </div>
 
-        <!-- PARTIES -->
-        <section class="grid md:grid-cols-2 gap-8 mb-12">
-            <div class="bg-neo-black text-white p-8 border-4 border-neo-black shadow-neo relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-4 font-mono text-6xl text-gray-800 font-bold opacity-20">FROM</div>
-                <h2 class="text-2xl font-bold mb-6 border-b-2 border-white pb-2 inline-block">ÉMETTEUR</h2>
-                <div class="font-mono space-y-2">
-                    <p class="text-2xl font-bold text-neo-yellow">BAPTISTE FORT</p>
-                    <p class="text-sm uppercase tracking-wide opacity-80">Développement & Automatisation</p>
-                    <div class="my-4 h-px bg-gray-700"></div>
-                    <p>1 RUE DU ROI DAGOBERT</p>
-                    <p>94130 NOGENT-SUR-MARNE</p>
-                    <p class="text-xs mt-4 text-gray-400">SIRET : 90939247400013</p>
-                </div>
+        <div class="bottom">
+            <div class="bank">
+                <h4>📄 COORDONNÉES BANCAIRES</h4>
+                <div class="row"><span>Titulaire</span><strong>BAPTISTE FORT</strong></div>
+                <div class="row"><span>Banque</span><strong>CREDIT MUTUEL</strong></div>
+                <div class="row"><span>BIC</span><span>CMCIFR2A</span></div>
+                <div class="iban">FR76 1027 8060 2000 0200 0750 590</div>
             </div>
-            <div class="bg-white p-8 border-4 border-neo-black shadow-neo relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-4 font-mono text-6xl text-gray-200 font-bold">TO</div>
-                <h2 class="text-2xl font-bold mb-6 border-b-2 border-neo-black pb-2 inline-block">DESTINATAIRE</h2>
-                <div class="font-mono space-y-2">
-                    <p class="text-2xl font-bold">RÉSEAU BONAPARTE</p>
-                    <p class="text-sm uppercase tracking-wide text-gray-600">SAS au capital de 12 829,00 €</p>
-                    <div class="my-4 h-px bg-gray-200"></div>
-                    <p>26 AVENUE JEAN KUNTZMANN</p>
-                    <p>38330 MONTBONNOT-SAINT-MARTIN</p>
-                    <div class="flex flex-col gap-1 mt-4 text-xs text-gray-500">
-                        <p>SIRET : 839 121 126 00024</p>
-                    </div>
-                </div>
+            <div class="total-box">
+                <div class="label">NET À PAYER</div>
+                <div class="amount">900,00 €</div>
             </div>
-        </section>
+        </div>
 
-        <!-- SERVICES TABLE -->
-        <section class="mb-12">
-            <div class="border-4 border-neo-black bg-white shadow-neo">
-                <div
-                    class="grid grid-cols-12 bg-neo-black text-white font-mono font-bold py-3 px-4 border-b-4 border-neo-black">
-                    <div class="col-span-9">DÉSIGNATION</div>
-                    <div class="col-span-3 text-right">MONTANT HT</div>
-                </div>
-                <div class="p-6 md:p-8 bg-white relative">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-2xl md:text-3xl font-bold uppercase">Export Hektor → Apimo</h3>
-                    </div>
-                    <div class="space-y-3 font-mono text-sm pl-4 border-l-4 border-neo-accent my-6">
-                        <div class="flex items-start gap-3">
-                            <span class="text-neo-accent font-bold">></span>
-                            <p>Développement script Python / Selenium</p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <span class="text-neo-accent font-bold">></span>
-                            <p>Extraction données 468 biens immobiliers</p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <span class="text-neo-accent font-bold">></span>
-                            <p>Intégration API Apimo <span
-                                    class="bg-neo-yellow px-1 border border-black text-xs font-bold ml-2">468 BIENS
-                                    MIGRÉS</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid grid-cols-12 border-t-4 border-neo-black bg-gray-50">
-                    <div
-                        class="col-span-9 p-4 flex items-center justify-end font-mono font-bold border-r-4 border-neo-black">
-                        SOUS-TOTAL</div>
-                    <div class="col-span-3 p-4 flex items-center justify-end font-mono font-bold text-xl">900,00 €</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TOTAL & BANK -->
-        <section class="grid md:grid-cols-12 gap-8 items-start">
-            <div class="md:col-span-7 bg-white border-2 border-neo-black p-6 relative diagonal-stripes">
-                <div class="bg-white border-2 border-neo-black p-6 relative z-10 shadow-sm">
-                    <h3 class="font-bold border-b-2 border-black pb-2 mb-4 flex items-center gap-2">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
-                            <line x1="1" y1="10" x2="23" y2="10" />
-                        </svg>
-                        COORDONNÉES BANCAIRES
-                    </h3>
-                    <div class="grid grid-cols-1 gap-2 font-mono text-sm">
-                        <div class="flex justify-between border-b border-dashed border-gray-300 pb-1">
-                            <span class="text-gray-500">Titulaire</span>
-                            <span class="font-bold">BAPTISTE FORT</span>
-                        </div>
-                        <div class="flex justify-between border-b border-dashed border-gray-300 pb-1">
-                            <span class="text-gray-500">Banque</span>
-                            <span class="font-bold">CREDIT MUTUEL</span>
-                        </div>
-                        <div class="flex justify-between border-b border-dashed border-gray-300 pb-1">
-                            <span class="text-gray-500">BIC</span>
-                            <span>CMCIFR2A</span>
-                        </div>
-                        <div class="mt-2">
-                            <span class="text-gray-500 block text-xs">IBAN</span>
-                            <span
-                                class="font-bold bg-gray-100 px-2 py-1 block mt-1 tracking-widest border border-gray-300">FR76
-                                1027 8060 2000 0200 0750 590</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="md:col-span-5 flex flex-col gap-4">
-                <div
-                    class="bg-neo-accent border-4 border-neo-black p-8 text-center shadow-neo transform rotate-1 hover:rotate-0 transition-transform">
-                    <p class="font-mono text-white font-bold mb-2 uppercase">Net à payer</p>
-                    <div class="text-5xl md:text-6xl font-bold text-white tracking-tighter counter-value">900,00 €</div>
-                </div>
-                <div class="text-xs font-mono text-center text-gray-500 mt-2 px-4">
-                    TVA non applicable selon l'article 293 B du CGI
-                </div>
-            </div>
-        </section>
-
-        <!-- STAMP -->
-        <section class="mt-16 flex justify-end px-8">
-            <div
-                class="transform -rotate-12 opacity-80 border-4 border-neo-green text-neo-green p-4 inline-block font-bold text-xl uppercase tracking-widest stamp-box">
+        <div class="stamp">
+            <div class="tva-note">TVA non applicable selon l'article 293 B du CGI</div>
+            <div class="stamp-box">
                 VALIDÉ & LIVRÉ
-                <div class="text-xs text-center mt-1 border-t border-neo-green pt-1">15/12/2025</div>
+                <small>15/12/2025</small>
             </div>
-        </section>
+        </div>
 
-        <footer class="mt-24 text-center border-t-2 border-neo-black pt-8 pb-8 font-mono text-xs text-gray-500">
-            <p>BAPTISTE FORT - SIRET 90939247400013 - 1 RUE DU ROI DAGOBERT 94130 NOGENT-SUR-MARNE</p>
-        </footer>
-    </main>
-
-    <script>
-        gsap.from("main", { y: 100, opacity: 0, duration: 1.2, ease: "power3.out", delay: 0.2 });
-        let price = { val: 0 };
-        gsap.to(price, { val: 900, duration: 2, ease: "power2.out", delay: 0.5, onUpdate: function () { document.querySelector(".counter-value").innerText = price.val.toFixed(2).replace('.', ',') + " €"; } });
-    </script>
+        <div class="footer">
+            BAPTISTE FORT - SIRET 90939247400013 - 1 RUE DU ROI DAGOBERT 94130 NOGENT-SUR-MARNE
+        </div>
+    </div>
 </body>
 
 </html>
